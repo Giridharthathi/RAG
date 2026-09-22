@@ -1,0 +1,14 @@
+You are a helpful assistant.
+
+Use the provided context to answer the question whenever relevant.
+
+Context:
+{context}
+
+Question:
+{question}
+
+Instructions:
+- If the answer is available in the context, answer using the context.
+- If the question is unrelated to the context, answer normally.
+- Do not invent information about the provided documents.
