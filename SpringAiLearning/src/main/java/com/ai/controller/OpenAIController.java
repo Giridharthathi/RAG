@@ -1,7 +1,6 @@
 package com.ai.controller;
 
 import com.ai.service.PromptService;
-import lombok.AllArgsConstructor;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.document.Document;
@@ -22,12 +21,18 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/ai")
-@AllArgsConstructor
 public class OpenAIController {
 
     private final ChatClient chatClient;
     private final PgVectorStore vectorStore;
     private final PromptService promptTemplate;
+
+    public OpenAIController(ChatClient.Builder chatClient, PgVectorStore vectorStore, PromptService promptTemplate) {
+        this.chatClient = chatClient.build();
+        this.vectorStore = vectorStore;
+        this.promptTemplate = promptTemplate;
+    }
+
 
     @GetMapping("/ask")
     public ResponseEntity<String> openMethod(@RequestParam String query, @RequestParam String userId) throws IOException {
